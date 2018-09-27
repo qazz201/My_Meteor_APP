@@ -1,0 +1,94 @@
+<head>
+  <title>myApp</title>
+  <!-- Compiled and minified CSS -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+ <!-- Compiled and minified JavaScript -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</head>
+
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="center brand-logo">User List</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li> {{> loginButtons}}</li>
+
+      </ul>
+    </div>
+  </nav>
+
+ {{> userTasks}}
+  {{> adminDashbord}}
+
+</body>
+
+
+
+<template name="userTasks">
+  {{#if  currentUser}}
+    <h2 class="flow-text">Welcome back !
+    <span>{{currentUser.username}}</span>
+  </h2>
+
+
+{{#unless isInRole "admin"}}
+  <form >
+    <input type="text" name="name" class="user_inputNote">
+
+    <input type="submit" class="user_createNote btn wavses-effect waves-light" value="Create Note">
+  </form>
+
+  <p>Your current Notes:</p>
+<ul class="collection">
+   {{#each tasks}}
+  <li class="collection-item">{{title}}</li>
+    {{/each}}
+</ul>
+{{/unless}}
+{{else}}
+<h1 class="center">Please Log in</h1>
+{{/if}}
+
+</template>
+
+<template name="adminDashbord">
+
+{{#if  isInRole "admin"}}
+
+  <h3>All users:</h3>
+  <ul class="collection">
+    {{#each users}}
+    <li class="collection-item">
+      <span>{{username}}</span>
+      <button class="unFollowUser waves-effect waves-light red lighten-2 btn-small secondary-content">UnFollow</button>
+      <button class="followUser waves-effect waves-light btn-small secondary-content">Follow</button>
+
+    </li>
+    {{/each}}
+  </ul>
+
+  <h5>All users have password: <code>123456</code></h5>
+<ul class="collection session">
+
+
+  {{#each userData }}
+<li class="collection-item">
+  {{title}}
+  <blockquote>
+       This is data from {{username}}
+     </blockquote>
+
+
+</li>
+  {{/each}}
+
+  </ul>
+{{/if}}
+
+</template>
+
+<template name="adminUserData">
+
+</template>
