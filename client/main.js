@@ -65,23 +65,18 @@ Template.adminDashbord.events({
     var userName = $(event.target.parentNode).find("span").text()
 
     Meteor.subscribe("adminLaw", userName, function() {
-console.log([...Notes.find()])
-      Session.set("adminGetUserData", [...Notes.find()])
+    console.log([...Notes.find()])
+    Session.set("adminGetUserData", [...Notes.find()])
     });
   },
-
-
-
   "click .unFollowUser": function(event) {
 
     Object.keys(Session.keys).forEach(function(key){ Session.set(key, undefined); })
-Session.keys = {}
-console.log(Session.keys)
-//  Session.set("adminGetUserData", [{title:"sddddddđddfffff"}])
+     Session.keys = {}
+     console.log(Session.keys)
+    //Session.set("adminGetUserData", [{title:"sddddddđddfffff"}])
     //Session.keys = []
-  //  delete Session.keys['adminGetUserData']
+    //delete Session.keys['adminGetUserData']
 
   }
-
-
 })
