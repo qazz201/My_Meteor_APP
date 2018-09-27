@@ -18,9 +18,6 @@ import './main.html';
 Meteor.subscribe("userNotes");
 Meteor.subscribe("userList");
 
-
-
-
 Accounts.ui.config({
   passwordSignupFields: "USERNAME_ONLY"
 })
